@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { userDto } from './dto/user.dto';
 
@@ -28,9 +28,9 @@ export class AuthController {
     await this.authService.logout(data);
   }
 
-  @Post('/refresh')
-  async refresh(@Req() req: Request) {
-    const data = req.user;
-    return await this.authService.refresh(data);
+  @Public()
+  @Get('/refresh')
+  async refresh(@Body() req: Request) {
+    return await this.authService.refresh(req);
   }
 }

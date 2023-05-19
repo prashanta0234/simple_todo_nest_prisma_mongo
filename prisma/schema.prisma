@@ -25,5 +25,5 @@ model Todos{
   title String
   des String
   date DateTime @default(now())
-  userId String
+  userId String @db.ObjectId 
 }
